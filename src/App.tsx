@@ -2,8 +2,11 @@ import Header from "./components/Header.tsx";
 import {menuItems} from "./data/db.ts";
 import {Fragment} from "react";
 import MenuItem from "./components/MenuItem.tsx";
+import useOrder from "./hooks/useOrder.ts";
+
 
 function App() {
+    const {addItem} = useOrder();
 
     return (
         <>
@@ -20,6 +23,7 @@ function App() {
                                 <MenuItem
                                     key={item.id}
                                     item={item}
+                                    addItem={addItem}
                                 />
                             );
                         })}
