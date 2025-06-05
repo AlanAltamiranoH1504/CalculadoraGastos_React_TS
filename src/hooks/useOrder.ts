@@ -22,10 +22,10 @@ function useOrder() {
             setOrden([...orden, newItem]);
         }
     }
-    console.log(orden)
 
     return {
-        addItem
+        addItem,
+        orden
     }
 }
 

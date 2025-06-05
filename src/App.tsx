@@ -1,12 +1,17 @@
 import Header from "./components/Header.tsx";
 import {menuItems} from "./data/db.ts";
-import {Fragment} from "react";
+import {Fragment, useEffect} from "react";
 import MenuItem from "./components/MenuItem.tsx";
 import useOrder from "./hooks/useOrder.ts";
+import OrderContent from "./components/OrderContent.tsx";
 
 
 function App() {
-    const {addItem} = useOrder();
+    const {addItem, orden} = useOrder();
+
+    // useEffect(() => {
+    //
+    // })
 
     return (
         <>
@@ -29,8 +34,11 @@ function App() {
                         })}
                     </div>
                 </div>
-                <div className="p-5">
+                <div className="border border-dashed border-slate-300 p-5 rounded-lg space-y-10">
                     <h2 className="text-center text-3xl font-black mb-4">Consumo</h2>
+                    <OrderContent
+                        orden={orden}
+                    />
                 </div>
             </main>
         </>
