@@ -1,18 +1,15 @@
 import Header from "./components/Header.tsx";
 import {menuItems} from "./data/db.ts";
-import {Fragment, useEffect} from "react";
+import {Fragment} from "react";
 import MenuItem from "./components/MenuItem.tsx";
 import useOrder from "./hooks/useOrder.ts";
 import OrderContent from "./components/OrderContent.tsx";
+import OrdenTotales from "./components/OrdenTotales.tsx";
+import PropinasFormulario from "./components/PropinasFormulario.tsx";
 
 
 function App() {
-    const {addItem, orden} = useOrder();
-
-    // useEffect(() => {
-    //
-    // })
-
+    const {addItem, orden, removeItem, costoTotalOrden, calcularPropina, propina} = useOrder();
     return (
         <>
             <Fragment>
@@ -38,7 +35,22 @@ function App() {
                     <h2 className="text-center text-3xl font-black mb-4">Consumo</h2>
                     <OrderContent
                         orden={orden}
+                        removeItem={removeItem}
                     />
+                    {orden.length > 0 ? (
+                        <Fragment>
+                            <PropinasFormulario
+                                calcularPropina={calcularPropina}
+
+                            />
+                            <OrdenTotales
+                                costoTotalOrden={costoTotalOrden}
+                                propina={propina}
+                            />
+                        </Fragment>
+                    ):(
+                        <Fragment></Fragment>
+                    )}
                 </div>
             </main>
         </>

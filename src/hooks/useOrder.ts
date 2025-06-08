@@ -3,6 +3,7 @@ import type {MenuItem, OrderItem} from "../types";
 
 function useOrder() {
     const [orden, setOrden] = useState<OrderItem[]>([]);
+    const [propina, setPropina] = useState(0);
 
     const addItem = (item: MenuItem) => {
         const itemExistente = orden.findIndex((producto) => {
@@ -23,9 +24,33 @@ function useOrder() {
         }
     }
 
+    const removeItem = (id: MenuItem['id']) => {
+        const nuevaOrden =orden.filter((producto) => {
+            return producto.id !== id;
+        })
+        setOrden(nuevaOrden);
+    }
+
+    function costoTotalOrden() {
+        return orden.reduce((total, item) => {
+            return total = total + (item.cantidad * item.price);
+        }, 0);
+    }
+
+    const calcularPropina = (porcentaje: number) =>{
+        const totalConPropina = costoTotalOrden() * (1 + porcentaje);
+        // console.log(totalConPropina)
+        setPropina(totalConPropina);
+        return totalConPropina;
+    }
+
     return {
         addItem,
-        orden
+        orden,
+        removeItem,
+        costoTotalOrden,
+        calcularPropina,
+        propina
     }
 }
 

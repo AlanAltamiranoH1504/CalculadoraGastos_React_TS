@@ -7,3 +7,9 @@ export type MenuItem ={
 export type OrderItem = MenuItem & {
     cantidad: number;
 }
+
+export type Propina = {
+    id: string;
+    value: number;
+    label: string
+}
