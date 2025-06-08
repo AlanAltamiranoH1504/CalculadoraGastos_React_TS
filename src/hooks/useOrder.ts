@@ -37,11 +37,18 @@ function useOrder() {
         }, 0);
     }
 
-    const calcularPropina = (porcentaje: number) =>{
-        const totalConPropina = costoTotalOrden() * (1 + porcentaje);
-        // console.log(totalConPropina)
-        setPropina(totalConPropina);
-        return totalConPropina;
+    const calcularTotalConPropina = (): number =>{
+        return calcularPropina() + costoTotalOrden();
+    }
+
+    const calcularPropina = ()=> {
+        return costoTotalOrden() * propina;
+    }
+
+    const reiniciarOrden = (): void => {
+        setPropina(0);
+        setOrden([]);
+        console.log("Reiniciando")
     }
 
     return {
@@ -49,8 +56,11 @@ function useOrder() {
         orden,
         removeItem,
         costoTotalOrden,
+        calcularTotalConPropina,
         calcularPropina,
-        propina
+        propina,
+        setPropina,
+        reiniciarOrden
     }
 }
 

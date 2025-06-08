@@ -9,7 +9,7 @@ import PropinasFormulario from "./components/PropinasFormulario.tsx";
 
 
 function App() {
-    const {addItem, orden, removeItem, costoTotalOrden, calcularPropina, propina} = useOrder();
+    const {addItem, orden, removeItem, costoTotalOrden, calcularTotalConPropina, calcularPropina, propina, setPropina, reiniciarOrden} = useOrder();
     return (
         <>
             <Fragment>
@@ -40,12 +40,13 @@ function App() {
                     {orden.length > 0 ? (
                         <Fragment>
                             <PropinasFormulario
-                                calcularPropina={calcularPropina}
-
+                                setPropina={setPropina}
                             />
                             <OrdenTotales
                                 costoTotalOrden={costoTotalOrden}
-                                propina={propina}
+                                calcularPropina={calcularPropina}
+                                calcularTotalConPropina={calcularTotalConPropina}
+                                reiniciarOrden={reiniciarOrden}
                             />
                         </Fragment>
                     ):(

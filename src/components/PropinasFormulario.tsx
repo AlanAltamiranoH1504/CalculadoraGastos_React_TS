@@ -19,10 +19,10 @@ const tipOptions: Propina[] = [
 ]
 
 type PropinasFormularioProps = {
-    calcularPropina: (propina: number) => number
+    setPropina:  React.Dispatch<React.SetStateAction<number>>
 }
 
-const PropinasFormulario = ({calcularPropina}: PropinasFormularioProps) => {
+const PropinasFormulario = ({setPropina}: PropinasFormularioProps) => {
 
     return (
         <Fragment>
@@ -41,8 +41,9 @@ const PropinasFormulario = ({calcularPropina}: PropinasFormularioProps) => {
                                     type="radio"
                                     value={opcion.value}
                                     name="propina"
-                                    onChange={() => {
-                                        calcularPropina(opcion.value);
+                                    onChange={(e) => {
+                                        // calcularPropina(opcion.value);
+                                        setPropina(+e.target.value);
                                     }}
                                 />
                             </div>
